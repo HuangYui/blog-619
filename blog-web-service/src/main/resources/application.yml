@@ -1,0 +1,86 @@
+spring:
+  application:
+    name: blog-web-server
+  output:
+    ansi:
+      enabled: always
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  #  profiles:
+  #    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gzlover?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  thymeleaf:
+    #定位模板的目录，即index文件目录
+    prefix: classpath:/templates/
+    #给返回的页面添加后缀名
+    suffix: .html
+    servlet:
+      content-type: text/html
+    mode: HTML
+    cache: false
+    encoding: utf-8
+
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-connections: 500
+    min-spare-threads: 25
+    max-threads: 300
+    accept-count: 200
+  port: 8088
+
+mybatis:
+#  type-aliases-package: com.hy.mapper
+  mapper-locations: classpath:com/hy/user/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        security: DEBUG
+        web: ERROR
+      hibernate: DEBUG
+      apache:
+        commons:
+          dbcp2: DEBUG
+      mybatis: DEBUG
+    com:
+      hy:
+        user:
+          mapper: debug
+
+
+  pattern:
+    console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+
+
