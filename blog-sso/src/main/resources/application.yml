@@ -1,0 +1,94 @@
+# 端口
+server:
+  port: 9000
+
+# Sa-Token 配置
+sa-token:
+  # -------------- SSO-模式一相关配置  (非模式一不需要配置)
+#  cookie:
+  # 配置Cookie作用域
+#    domain: stp.com
+
+  # ------- SSO-模式二相关配置
+  sso:
+    # Ticket有效期 (单位: 秒)，默认五分钟
+    ticket-timeout: 300
+    # 所有允许的授权回调地址
+    allow-url: "*"
+    # 是否打开单点注销功能
+    is-slo: true
+
+    # ------- SSO-模式三相关配置 （下面的配置在SSO模式三并且 is-slo=true 时打开） -------
+    # 是否打开模式三
+    isHttp: true
+    # 接口调用秘钥（用于SSO模式三的单点注销功能）
+    secretkey: kQwIOrYvnXmSDkwEiFngrKidMcdrgKor
+    # ---- 除了以上配置项，你还需要为 Sa-Token 配置http请求处理器（文档有步骤说明）
+
+spring:
+  # Redis配置 （SSO模式一和模式二使用Redis来同步会话）
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 1
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+  application:
+    name: blog-sso
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog619?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# feign的配置
+feign:
+  client:
+    config:
+      gzlover-web-server:
+        connectTimeout: 5000  # 相当于Request.Optionsn 连接超时时间
+        readTimeout: 5000     # 相当于Request.Options 读取超时时间
+        loggerLevel: full     # 配置Feign的日志级别，相当于代码配置方式中的Logger
+        #        errorDecoder: com.example.SimpleErrorDecoder  # Feign的错误解码器，相当于代码配置方式中的ErrorDecoder
+        #        retryer: com.example.SimpleRetryer  # 配置重试，相当于代码配置方式中的Retryer
+        #        requestInterceptors: # 配置拦截器，相当于代码配置方式中的RequestInterceptor
+        #          - com.example.FooRequestInterceptor
+        #          - com.example.BarRequestInterceptor
+        # 是否对404错误解码
+        decode404: false
+  #        encode: com.example.SimpleEncoder
+  #        decoder: com.example.SimpleDecoder
+  #        contract: com.example.SimpleContract
+  httpclient:
+    # 让feign使用apache httpclient作请求
+    enabled: true
+    # feign的最大连接数
+    max-connections: 200
+    # feign单个路径的最大连接数
+    max-connections-per-route: 50
+  compression:
+    request:
+      enabled: true # 开启请求压缩
+      mime-types: text/html,application/xml,application/json # 设置压缩的数据类型
+      min-request-size: 2048 # 设置触发压缩的大小下限

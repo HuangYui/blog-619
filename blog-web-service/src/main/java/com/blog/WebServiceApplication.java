@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.blog.user.mapper*")
+@MapperScan("com.blog.mapper")
 public class WebServiceApplication {
 
     @LoadBalanced

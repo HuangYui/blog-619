@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bolg.entity.User">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="gender" property="gender" />
+        <result column="mailbox" property="mailbox" />
+        <result column="wechat_number" property="wechatNumber" />
+        <result column="birthday" property="birthday" />
+        <result column="origin" property="origin" />
+        <result column="national_id" property="nationalId" />
+        <result column="id_number" property="idNumber" />
+        <result column="home_address" property="homeAddress" />
+        <result column="marital_status" property="maritalStatus" />
+        <result column="emergency_contacts" property="emergencyContacts" />
+        <result column="emergency_contacts_number" property="emergencyContactsNumber" />
+        <result column="notes" property="notes" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="salt" property="salt" />
+        <result column="token" property="token" />
+        <result column="photo" property="photo" />
+        <result column="binding_mobile_devices" property="bindingMobileDevices" />
+        <result column="creator" property="creator" />
+        <result column="create_time" property="createTime" />
+        <result column="updator" property="updator" />
+        <result column="update_time" property="updateTime" />
+        <result column="graduation_date" property="graduationDate" />
+        <result column="province_id" property="provinceId" />
+        <result column="city_id" property="cityId" />
+        <result column="county_id" property="countyId" />
+        <result column="role_id" property="roleId" />
+        <result column="last_use_time" property="lastUseTime" />
+        <result column="account_status" property="accountStatus" />
+        <result column="show_order" property="showOrder" />
+        <result column="first_login_time" property="firstLoginTime" />
+        <result column="last_update_password" property="lastUpdatePassword" />
+        <result column="authenticate" property="authenticate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, account, user_name, password, phone_number, gender, mailbox, wechat_number, birthday, origin, national_id, id_number, home_address, marital_status, emergency_contacts, emergency_contacts_number, notes, last_login_time, salt, token, photo, binding_mobile_devices, creator, create_time, updator, update_time, graduation_date, province_id, city_id, county_id, role_id, last_use_time, account_status, show_order, first_login_time, last_update_password, authenticate
+    </sql>
+
+</mapper>

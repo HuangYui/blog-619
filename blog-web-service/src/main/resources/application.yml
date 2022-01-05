@@ -12,7 +12,7 @@ spring:
   #    active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/gzlover?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/blog619?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
@@ -50,11 +50,11 @@ server:
     accept-count: 200
   port: 8088
 
-mybatis:
-#  type-aliases-package: com.hy.mapper
-  mapper-locations: classpath:com/hy/user/mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis:
+##  type-aliases-package: com.hy.mapper
+#  mapper-locations: classpath:com/hy/user/mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 pagehelper:
   helper-dialect: mysql
   reasonable: true
@@ -75,11 +75,8 @@ logging:
           dbcp2: DEBUG
       mybatis: DEBUG
     com:
-      hy:
-        user:
-          mapper: debug
-
-
+      blog:
+        mapper: debug
   pattern:
     console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
 
